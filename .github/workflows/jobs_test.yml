@@ -52,10 +52,11 @@ jobs:
     needs: job_1
     runs-on: windows-latest
     steps:
-      - shell: bash
+      - name: Download result
         uses: actions/download-artifact@v4
         with:
           name: result
+      - shell: bash
         run: |
           value=`cat result.txt`
           echo $(expr $value \* 9)
