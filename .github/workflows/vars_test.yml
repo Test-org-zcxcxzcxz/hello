@@ -6,6 +6,7 @@ env:
 jobs:
   display-variables:
     name: ${{ vars.ENVIRONMENT_VAR }}
+    environment: env 1
     runs-on: ubuntu-latest
     steps:
     - name: Use variables 1
@@ -17,7 +18,9 @@ jobs:
         echo "Should be variable in workflow scope:$WORKFLOW_VAR"
         echo "Should be variable in job scope:$JOB_VAR"
         echo "Should be variable in step scope:$STEP_VAR"
-    
+      env:
+        REPOSITORY_VAR: ${{ vars.REPOSITORY_VAR }}
+        ORGANIZATION_VAR: ${{ vars.ORGANIZATION_VAR }}
     - name: Use variables 2
       run: |
         echo "Alice has a cat named $cat_name"
