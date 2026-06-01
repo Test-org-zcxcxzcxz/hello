@@ -21,7 +21,7 @@ jobs:
       - name: Make a sentence
         id: sentence_maker
         run: |
-            echo "SENTENCE='The quick brown fox jumps over the lazy dog.'" >> $GITHUB_ENV
+            echo "SENTENCE='The quick brown fox jumps over the lazy dog.'" >> $GITHUB_OUTPUT  
     outputs:
       sentence: ${{ steps.sentence_maker.outputs.SENTENCE }}
 
@@ -33,7 +33,7 @@ jobs:
     steps:
       - name: Print the message
         run: |
-          echo '$SENTENCE'
+          echo $SENTENCE
 
   job_1:
     name: Add 3 and 7
