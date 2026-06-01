@@ -2,9 +2,25 @@ name: dispatch
 on:
   workflow_dispatch:
     inputs:
+      logLevel:
+        description: 'Log level'
+        required: true
+        type: choice
+        default: warning
+        options:
+          - info
+          - warning
+          - debug
+      environment:
+        description: 'Environment'
+        required: false
+        type: environment
 jobs:
   log-the-inputs:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        environment: [dev, staging, production]
     steps:
       - run: |
           echo "Log level: $LEVEL"
